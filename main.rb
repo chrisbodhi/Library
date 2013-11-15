@@ -28,7 +28,7 @@ library.add_book(finnegan)
 library.add_book(k_and_r)
 puts "-------------------------"
 
-puts "list all five books in the library's catalog with their status:"
+puts "list all six books in the library's catalog with their status:"
 library.list_books
 puts "-------------------------"
 
@@ -42,7 +42,7 @@ library.check_out(gilbert, karamazov)
 library.check_out(gilbert, feynman)
 puts "-------------------------"
 
-puts "list all five books in the library's catalog with their statuses:"
+puts "list all six books in the library's catalog with their statuses:"
 library.list_books
 puts "-------------------------"
 

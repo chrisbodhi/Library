@@ -59,6 +59,7 @@ class Library
     total = (book.rating[0] + rate)
     book.rating[0] = total / (book.rating[1] + 1)
     book.rating[1] += 1
+    puts "Thanks! The average review is now #{book.rating[0]}, which is out of #{book.rating[1]} reviews."
     book.rating
   end
 
@@ -77,10 +78,6 @@ class Borrower
     @checked_out_books.each do |book|
       puts book.title
     end
-  end
-
-  def borrowed_books_count
-    @checked_out_books.length
   end
 
   def borrowed_books_list

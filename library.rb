@@ -37,7 +37,7 @@ class Library
         # puts user.checked_out_books
         book.status = "checked_out"
         book.borrower = user.name
-        user.checked_out_books.each { |book| puts book.title + ' - ' + book.status }
+        puts book.title + ' - ' + book.status
       else
         puts "Sorry, #{user.name}, you already have two books out. "
       end

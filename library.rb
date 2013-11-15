@@ -101,6 +101,8 @@ class Book
     @status = "available"
     @borrower = nil
     @rating = [0, 0] #[average rating, total ratings]
+    @year_published = nil
+    @edition = nil
   end
 
 end

@@ -4,9 +4,6 @@ class Library
     @books = []
   end
 
-  def books
-  end
-
   def list_books
     @books.each do |book|
       print book.title + ' - ' + book.status
@@ -52,6 +49,19 @@ class Library
     end
   end
 
+  def book_review(book)
+    puts "Please rate this title, from 0 to 5 stars."
+    puts "The current average review is #{book.rating[0]}, which is out of #{book.rating[1]} reviews."
+    puts "0 - 5?"
+    rate = gets.chomp
+    rate = rate.to_i
+    #rating = [average rating, total ratings]
+    total = (book.rating[0] + rate)
+    book.rating[0] = total / (book.rating[1] + 1)
+    book.rating[1] += 1
+    book.rating
+  end
+
 end
 
 class Borrower
@@ -83,13 +93,14 @@ end
 
 class Book
   attr_reader :title, :author
-  attr_accessor :status, :borrower
+  attr_accessor :status, :borrower, :rating
 
   def initialize(title, author)
     @title = title
     @author = author
     @status = "available"
     @borrower = nil
+    @rating = [0, 0] #[average rating, total ratings]
   end
 
 end

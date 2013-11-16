@@ -79,6 +79,6 @@ puts "this should only show the available books"
 library.available_books
 puts "-------------------------"
 
-puts "Please rate The Stranger."
-library.book_review(stranger)
+puts "Please rate your book."
+library.book_review(nausea)
 

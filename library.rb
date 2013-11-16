@@ -109,17 +109,23 @@ class Library
     end
   end
 
-  # Public: Prompts the user to submit a rating (from 0 to 5) for the book.
-  #
-  # book - initialized Object from the Book Class
-  #
-  # book.rating is an array of [average rating, total ratings]
+  # Public: Prompts the user to rate a single book title by submitting a 
+  # rating (from 1 to 5) for it. Average of all ratings is calculated then 
+  # shown. Submitting either a non-integer or a number outside the range will 
+  # lead to prompting the question to the user again. The rating is in the 
+  # form of an Array of two numbers, the average rating and the total number 
+  # of ratings.
   #
   # Examples
   #
-  #   check_in(stranger)
+  #   book_review
+  #   # => "Please rate this title, from 1 to 5 stars."
+  #   # => "The current average review is 0, which is out of 
+  #         0 reviews."
+  #   # => "1 - 5?"
+  #   # => "Thanks! The average review is now 3, which is out of 1 reviews."
   #
-  # Returns the rating in the form of an Array of two numbers.
+  # Returns nil.
   def book_review(book)
     puts "Please rate this title, from 1 to 5 stars."
     puts "The current average review is #{book.rating[0]}, which is out of #{book.rating[1]} reviews."
@@ -134,32 +140,55 @@ class Library
       book.rating[0] = total / (book.rating[1] + 1)
       book.rating[1] += 1
       puts "Thanks! The average review is now #{book.rating[0]}, which is out of #{book.rating[1]} reviews."
-    else
+    else  # Also covers non-numbers, which to_i to zero.
       puts "That's no good. Try again."
       book_review(book)
     end
-
-    book.rating
   end
 
 end
 
 class Borrower
-
+  # Allows the rest of the code to read user.name and user.checked_out_books, 
+  # in addition to writing to the latter.
   attr_reader :name
   attr_accessor :checked_out_books
 
+  # Only name is required, array of checked_out_books is set to empty
   def initialize(name)
     @name = name
     @checked_out_books = []
   end
 
+  # Public: Puts all of the books in the library, followed by the name of the 
+  # current borrower.
+  #
+  # Example
+  #
+  #   borrowed_books
+  #   # => The Stranger - Mike
+  #   # => Nausea - Mike
+  #   # => The Brothers Karamazov - Gilbert
+  #   # => Surely You're Joking Mr. Feynman - Gilbert
+  #   # => Finnegans Wake - Ricardo
+  #
+  # Returns nil.
   def borrowed_books
     @checked_out_books.each do |book|
       puts book.title
     end
   end
 
+  # Public: Displays the titles of all books checked out to each user.
+  #
+  #
+  # Examples
+  #
+  #   borrowed_books_list
+  #   # => The Stranger
+  #   # => Nausea
+  #
+  # Returns nil.
   def borrowed_books_list
     @checked_out_books.each do |book|
       puts book.title

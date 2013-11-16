@@ -112,9 +112,9 @@ class Library
   # Public: Prompts the user to rate a single book title by submitting a 
   # rating (from 1 to 5) for it. Average of all ratings is calculated then 
   # shown. Submitting either a non-integer or a number outside the range will 
-  # lead to prompting the question to the user again. The rating is in the 
-  # form of an Array of two numbers, the average rating and the total number 
-  # of ratings.
+  # lead to prompting the question to the user again. The stored rating is in 
+  # the form of an Array of two numbers, the average rating and the total 
+  # number of ratings.
   #
   # Examples
   #
@@ -202,6 +202,19 @@ class Book
   attr_reader :title, :author
   attr_accessor :status, :borrower, :rating
 
+  # Internal: For making a new instance of the Class. Sets default values for 
+  # status and rating, as well as creating borrower, year_published, and 
+  # edition variables.
+  #
+  # title - The String that represents the book's title.
+  # author - The String that represents the book's author.
+  #
+  # Examples
+  #
+  #   Book.new("The Stranger", "Albert Camus")
+  #   # => nil
+  #
+  # Returns nil.
   def initialize(title, author)
     @title = title
     @author = author
